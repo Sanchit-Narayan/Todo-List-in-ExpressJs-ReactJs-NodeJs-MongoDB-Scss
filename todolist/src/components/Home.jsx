@@ -2,24 +2,25 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Create from './Create';
 import { BsFillCheckCircleFill, BsCircleFill, BsFillTrashFill } from 'react-icons/bs';
+import { API_URL } from '../config/api';
 
 function Home() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/get')
+    axios.get(`${API_URL}/get`)
       .then(result => setTodos(result.data))
       .catch(err => console.log(err));
   }, []);
 
   const handleEdit = (id) => {
-    axios.put('http://localhost:3001/update/' + id)
+    axios.put(`${API_URL}/update/${id}`)
       .then(result => location.reload())
       .catch(err => console.log(err));
   }
 
   const handleDelete = (id) => {
-    axios.delete('http://localhost:3001/delete/' + id)
+    axios.delete(`${API_URL}/delete/${id}`)
       .then(result => location.reload())
       .catch(err => console.log(err));
   }

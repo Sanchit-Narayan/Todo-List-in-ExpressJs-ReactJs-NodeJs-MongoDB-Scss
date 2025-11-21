@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { API_URL } from '../config/api';
 
 function Create() {
   const [task, setTask] = useState('');
   const handleAdd = () => {
-    axios.post('http://localhost:3001/add', { task: task })
-      .then(() => location.reload())  // Removed result
+    axios.post(`${API_URL}/add`, { task: task })
+      .then(() => location.reload())
       .catch(err => console.log(err));
   }
   return (
